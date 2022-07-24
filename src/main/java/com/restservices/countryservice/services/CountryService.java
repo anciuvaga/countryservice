@@ -1,7 +1,6 @@
 package com.restservices.countryservice.services;
 
 import com.restservices.countryservice.beans.Country;
-import com.restservices.countryservice.controllers.AddResponse;
 import com.restservices.countryservice.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,10 +20,16 @@ public class CountryService {
     }
 
     public Country getCountryById(int id) {
-        return countryRepository.findById(id).get();
+        List<Country> countries = countryRepository.findAll();
+        Country country = null;
+        for(Country element : countries){
+            if(element.getId() == id)
+                country = element;
+        }
+        return country;
     }
 
-    public Country getCountryByName(String countryName){
+    public Country getCountryByName(String countryName) {
        List<Country> countries =  countryRepository.findAll();
        Country country = null;
        for(Country element : countries ){
@@ -40,21 +45,17 @@ public class CountryService {
         return country;
     }
 
-    public  int getMaxId() {
-        return countryRepository.findAll().size() + 1;
-    }
-
     public Country updateCountry(Country country) {
         countryRepository.save(country);
         return country;
     }
 
-    public AddResponse deleteCountry(int id) {
-        countryRepository.deleteById(id);
-        AddResponse response = new AddResponse();
-        response.setMsg("Country deleted...");
-        response.setId(id);
-        return response;
+    public void deleteCountry(Country country) {
+        countryRepository.delete(country);
     }
 
+    // Utility method to get max id
+    public  int getMaxId() {
+        return countryRepository.findAll().size() + 1;
+    }
 }
