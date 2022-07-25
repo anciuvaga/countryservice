@@ -24,8 +24,6 @@ public class ServiceMockitoTests {
     @InjectMocks
     CountryService countryService;
 
-    public List<Country> myCountries;
-
     @Test
     @Order(1)
     public void test_getAllCountries() {
@@ -83,5 +81,4 @@ public class ServiceMockitoTests {
         countryService.deleteCountry(country);
         verify(countryRepository, times(1)).delete(country);
     }
-
 }
