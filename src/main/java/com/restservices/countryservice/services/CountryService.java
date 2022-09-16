@@ -39,7 +39,7 @@ public class CountryService {
        return country;
     }
 
-    public Country addcountry(Country country) {
+    public Country addCountry(Country country) {
         country.setId(getMaxId());
         countryRepository.save(country);
         return country;

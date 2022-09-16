@@ -51,7 +51,7 @@ public class CountryController {
     public ResponseEntity<Country> addCountry(@RequestBody Country country) {
 
         try {
-            country = countryService.addcountry(country);
+            country = countryService.addCountry(country);
             return new ResponseEntity<>(country, HttpStatus.CREATED);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -67,7 +67,7 @@ public class CountryController {
             existCountry.setCountryCapital(country.getCountryCapital());
 
             Country updatedCountry = countryService.updateCountry(existCountry);
-            return new ResponseEntity<>(updatedCountry, HttpStatus.FOUND);
+            return new ResponseEntity<>(updatedCountry, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

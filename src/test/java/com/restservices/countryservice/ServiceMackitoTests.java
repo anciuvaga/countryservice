@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@SpringBootTest(classes = {ServiceMockitoTests.class})
-public class ServiceMockitoTests {
+@SpringBootTest(classes = {ServiceMackitoTests.class})
+public class ServiceMackitoTests {
 
     @Mock
     CountryRepository countryRepository;
@@ -63,7 +63,7 @@ public class ServiceMockitoTests {
     public void test_addCountry() {
         Country country = new Country(3, "Germany", "Berlin");
         when(countryRepository.save(country)).thenReturn(country);
-        assertEquals(country, countryService.addcountry(country));
+        assertEquals(country, countryService.addCountry(country));
     }
 
     @Test
